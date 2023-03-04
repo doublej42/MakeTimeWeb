@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @if(string.IsNullOrWhiteSpace(Model.MyName))
+    {
+        <form method="post">
+            <label>What is your name</label> <input type="text" asp-for="MyName" />
+            <button type="submit">Submit</button>
+        </form>
+    }
+    else
+    {
+        <p>Hello @Model.MyName</p>
+        <form method="post">
+            <input type="hidden" asp-for="MyName" />
+            <button type="submit">Submit</button>
+        </form>
+    }
+</div>
