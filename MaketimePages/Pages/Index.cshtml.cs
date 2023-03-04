@@ -12,18 +12,45 @@ namespace MaketimePages.Pages
             _logger = logger;
         }
 
+        const int min = 1;
+        const int max = 10;
+
         //We need a place to store the name
         [BindProperty]
         public string MyName { get; set; }
 
+        //[BindProperty]
+        public int CorrectAnswer { get; set; }
+
+        [BindProperty]
+        public int Guess { get; set; }
+
+        [BindProperty]
+        public string Output { get; set; }
+
         public void OnGet()
         {
-            
+
+
+
         }
 
         public void OnPost()
         {
-            _logger.LogDebug(MyName);
+            if (CorrectAnswer == Guess)
+            {
+                Output = "Lets play guess a new number";
+                var rnd = new Random();
+                CorrectAnswer = rnd.Next(min, max);
+            }
+            else if (Guess < CorrectAnswer)
+            {
+                Output = "Too low";
+            }
+            else if (Guess > CorrectAnswer)
+            {
+                Output = "Too high";
+            }
         }
 
     }
